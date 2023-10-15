@@ -1,0 +1,29 @@
+[package]
+name = "hyper-hickory-dns"
+description = "Hickory DNS resolver for Hyper"
+authors = ["Markus Wiegand <mail@morphy.dev>"]
+repository = "https://github.com/morphy2k/hyper-hickory-dns"
+readme = "README.md"
+license = "MIT OR Apache-2.0"
+categories = ["network-programming"]
+keywords = ["hyper", "dns", "hickory-resolver"]
+version = "0.1.0-pre.1"
+edition = "2021"
+rust-version = "1.67"
+
+[features]
+default = ["system-config"]
+
+system-config = ["hickory-resolver/system-config"]
+
+[dependencies]
+hyper = { version = "0.14", features = [
+    "runtime",
+    "client",
+    "tcp",
+], default-features = false }
+tokio = { version = "1", default-features = false }
+hickory-resolver = { version = "0.24", features = [
+    "tokio-runtime",
+    "dns-over-rustls",
+], default-features = false }
